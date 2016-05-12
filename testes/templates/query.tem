@@ -1,0 +1,41 @@
+{
+  "filter": {
+    "bool": {
+      "should": [
+        {
+          "term": {
+            "status_code": {{status_code}}
+          }
+        },
+        {
+          "term": {
+            "method": "{{method}}"
+          }
+        }
+      ],
+      "must": [
+        {
+          "term": {
+            "path": "{{path}}"
+          }
+        },
+        {
+          "range": {
+            "timestamp": {
+              "lt": "{{timestamp_lt}}",
+              "gt": "{{timestamp_gt}}"
+            }
+          }
+        },
+        {
+          "range": {
+            "response.result_idcard.confidence": {
+              "gt": {{confidence_gt}},
+              "lt": {{confidence_lt}}
+            }
+          }
+        }
+      ]
+    }
+  }
+}
