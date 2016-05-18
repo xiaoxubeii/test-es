@@ -1,0 +1,21 @@
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "range": {
+          "timestamp": {
+            "gt": "{{timestamp_gt}}",
+            "lt": "{{timestamp_lt}}"
+          }
+        }
+      }
+    }
+  },
+  "aggs": {
+    "avg_timeused": {
+      "avg": {
+        "field": "response.time_used"
+      }
+    }
+  }
+}
