@@ -1,8 +1,8 @@
 __author__ = 'tardis'
 from random import Random
 import random
-
 import ConfigParser
+import sys
 
 
 def random_int(randomlength=8):
@@ -27,3 +27,10 @@ class Config(object):
 
     def __getattr__(self, item):
         return self.config.get(self.section, item)
+
+
+def import_class(import_str):
+    """Returns a class from a string including module and class."""
+    mod_str, _sep, class_str = import_str.rpartition('.')
+    __import__(mod_str)
+    return getattr(sys.modules[mod_str], class_str)
